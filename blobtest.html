@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <button id="create-container-button">Create container</button>
+    <button id="delete-container-button">Delete container</button>
+    <button id="select-button">Select and upload files</button>
+    <input type="file" id="file-input" multiple style="display: none;" />
+    <button id="list-button">List files</button>
+    <p><b>Status:</b></p>
+    <p id="status" style="height:160px; width: 593px; overflow: scroll;" />
+    <p><b>Files:</b></p>
+    <select id="file-list" multiple style="height:222px; width: 593px; overflow: scroll;" />
+</body>
+
+<!-- You'll add code here later in this quickstart. -->
+<script src="azure-storage-blob.js" charset="utf-8"></script>
+
+<script>
+const createContainerButton = document.getElementById("create-container-button");
+const selectButton = document.getElementById("select-button");
+const listButton = document.getElementById("list-button");
+const status = document.getElementById("status");
+const fileList = document.getElementById("file-list");
+
+const reportStatus = message => {
+    status.innerHTML += `${message}<br/>`;
+    status.scrollTop = status.scrollHeight;
+}
+
+const accountName = "ftdstoragetest1";
+const sasString = "?sv=2019-02-02&st=2020-07-17T14%3A11%3A49Z&se=2021-07-18T14%3A11%3A00Z&sr=c&sp=rl&sig=hYMHm60UUu7BFe5JNQYWHCAwNQzkgbTwUojzXEVnAoU%3D
+";
+const containerName = "tst";
+const containerURL = new azblob.ContainerURL(
+    `https://ftdstoragetest1.blob.core.windows.net/tst?sv=2019-02-02&st=2020-07-17T14%3A11%3A49Z&se=2021-07-18T14%3A11%3A00Z&sr=c&sp=rl&sig=hYMHm60UUu7BFe5JNQYWHCAwNQzkgbTwUojzXEVnAoU%3D`,
+    azblob.StorageURL.newPipeline(new azblob.AnonymousCredential));
+
+</script>
+</html>
+<script>
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8080/index.html",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}
+</script>
